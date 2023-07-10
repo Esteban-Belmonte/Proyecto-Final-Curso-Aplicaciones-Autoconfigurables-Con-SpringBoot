@@ -3,9 +3,13 @@ package domain;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "inscripcion")
+@Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Inscripcion {
 
 	@Id
@@ -15,6 +19,7 @@ public class Inscripcion {
 	@Column(name = "fecha_inscripcion")
 	private LocalDate fechaInscripcion;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "estado_inscripcion")
 	private EstadoInscripcion estado;
 	
@@ -25,4 +30,5 @@ public class Inscripcion {
 	@ManyToOne
 	@JoinColumn(name = "estudiante_id")
 	private Estudiante estudiante;
+        
 }

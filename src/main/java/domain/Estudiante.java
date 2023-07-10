@@ -1,6 +1,7 @@
 package domain;
 
 import java.time.LocalDate;
+
 import java.util.List;
 
 import org.hibernate.annotations.Formula;
@@ -10,6 +11,9 @@ import lombok.*;
 
 @Entity
 @Table(name = "estudiante")
+@Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Estudiante {
 
@@ -35,6 +39,26 @@ public class Estudiante {
 	
 	@OneToMany(mappedBy = "estudiante")
 	private List<Inscripcion> inscripciones;
-	
-	
+
+        
+        public Estudiante(Long id, String nombre, String apellido, String dni, LocalDate fechaNacimiento,
+			int edad) {
+	}
+        
+        public boolean esMayorEdad(){
+        return edad >= 18;
+    }
+
+	@Override	
+        public String toString() {
+            return "Estudiante{" + 
+                    "id=" + id +
+            ", nombre='" + nombre + '\'' +
+            ", apellido='" + apellido + '\'' +
+            ", dni='" + dni + '\'' +
+            ", fecha_nacimiento='" + fechaNacimiento + '\'' +
+            ", edad=" + edad +
+            '}';
+
+        }
 }
